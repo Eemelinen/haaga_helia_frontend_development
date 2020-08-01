@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather</title>
+</head>
+
+<body>
+  <!-- Root container for react components -->
+  <div id='root'></div>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script type="text/babel">
+
+  function Weather() {
+
+    const [ temperature, setTemperature ] = React.useState('');
+    const [ weather, setWeather ] = React.useState('');
+    const [ weatherIcon, setWeatherIcon ] = React.useState('');
+
+    const fahrenheitToCelcius = kel => (kel - 273.15).toFixed(1);
+
+    React.useEffect(() => {
+      fetchWeather();
+    }, []);
+
+    // API KEY NEEDED IN URL
+    const fetchWeather = () => {
+      fetch('http://api.openweathermap.org/data/2.5/weather?q=Amsterdam%20&APPID={APIKEY}')
+        .then(data => data.json())
+        .then(weather => {
+          setTemperature(fahrenheitToCelcius(weather.main.temp));
+          setWeather(weather.weather[0].main);
+          setWeatherIcon(weather.weather[0].icon);
+        })
+    }
+
+    return (
+      <div className="App">
+        <h3>Temperature: {temperature}</h3>
+        <h3>Weather: {weather} </h3>
+        <img src={`http://openweathermap.org/img/w/${weatherIcon}.png`} alt='weatherImage'/>
+      </div>
+    );
+  }
+
+    ReactDOM.render(<Weather />, document.getElementById('root'));
+
+  </script>
+</body>
+
+</html>

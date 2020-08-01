@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AgeCheck</title>
+</head>
+
+<body>
+  <!-- Root container for react components -->
+  <div id='root'></div>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script type="text/babel">
+
+    function AgeCheck() {
+
+      const [ name, setname ] = React.useState('');
+      const [ age, setAge] = React.useState('');
+      const [ ageResponse, setAgeResponse ] = React.useState('');
+
+      const ageCheck = a => a < 18;
+
+      const ageMessage = a => ageCheck(a)
+        ? 'You are too young.'
+        : `Hello ${name}!`
+
+      return (
+        <div className="App">
+          <p className='greeting'>{ageResponse}</p>
+          <label>Name: </label>
+          <input type='text' name='name' onChange={e => {setname(e.target.value)}}/>
+          <label>age: </label>
+          <input type='number' name='age' onChange={e => {setAge(e.target.value)}}/>
+          <button onClick={() => setAgeResponse(ageMessage(age))}>Submit</button>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<AgeCheck />, document.getElementById('root'));
+
+  </script>
+</body>
+
+</html>

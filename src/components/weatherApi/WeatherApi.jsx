@@ -12,7 +12,7 @@ function WeatherApi() {
   const fahrenheitToCelcius = kel => (kel - 273.15).toFixed(1);
 
   useEffect(() => {
-    fetchWeather('Helsinki');
+    fetchWeather('Helsinki')
   }, []);
 
   const fetchWeather = c => {

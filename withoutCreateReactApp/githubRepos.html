@@ -13,20 +13,26 @@
     
     <script type="text/babel">
       const RestList = () => {
-        const [repos, setRepos] = React.useState([]);
-    
-        React.useEffect(() => {
-          fetch('https://api.github.com/search/repositories?q=react')
+        const [ repos, setRepos ] = React.useState([]);
+        const [ search, setSearch ] = React.useState('');
+        const [ searchWord, setSearchWord ] = React.useState('');
+
+        const fetchRepos = searchWord => {
+          setSearchWord(searchWord);
+          fetch(`https://api.github.com/search/repositories?q=${searchWord}`)
           .then(response => response.json()) 
           .then(responseData => { 
             setRepos(responseData.items)
           })
-          .catch(err => console.error(err))
-        }, [])
+          .catch(err => alert('Sorry! Your search caused an unexpected error.'))
+        }
         
         return (
           <div>
             <h2>Repositories</h2>
+            <input type='text' name='search' onChange={e => setSearch(e.target.value)} />
+            <button onClick={() => fetchRepos(search)}>Search</button>
+            <h2>Searching: {searchWord}</h2>
             <table>
               <tbody>
                 <tr><th>Name</th><th>URL</th></tr>
