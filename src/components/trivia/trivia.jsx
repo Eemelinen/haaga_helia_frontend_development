@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function App() {
+function trivia() {
 
   const [ question, setQuestion ] = useState('');
 
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default trivia;
