@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import './App.css';
 
 function App() {
 
-  const [ firstname, setFirstname ] = useState('');
-  const [ lastname, setLastname ] = useState('');
+  const [ name, setname ] = useState('');
+  const [ age, setAge] = useState('');
+  const [ ageResponse, setAgeResponse ] = useState('');
+
+  const ageCheck = (arg) => arg < 18;
+
+  const ageMessage = (arg) => ageCheck(arg)
+    ? 'You are too young.'
+    : `Hello ${name}!`
 
   return (
     <div className="App">
-
-        <input type='text' name='firstname' onChange={(e) => {setFirstname(e.target.value)}}/>
-        <input type='text' name='lastname' onChange={(e) => {setLastname(e.target.value)}}/>
-        <button onClick={() => alert(`Hello ${firstname} ${lastname}!`)}>Submit</button>
-
+      <p className='greeting'>{ageResponse}</p>
+      <label>Name: </label>
+      <input type='text' name='name' onChange={(e) => {setname(e.target.value)}}/>
+      <label>age: </label>
+      <input type='number' name='age' onChange={(e) => {setAge(e.target.value)}}/>
+      <button onClick={() => setAgeResponse(ageMessage(age))}>Submit</button>
     </div>
   );
 }
