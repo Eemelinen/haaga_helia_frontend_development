@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [ firstname, setFirstname ] = useState('');
+  const [ lastname, setLastname ] = useState('');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <input type='text' name='firstname' onChange={(e) => {setFirstname(e.target.value)}}/>
+        <input type='text' name='lastname' onChange={(e) => {setLastname(e.target.value)}}/>
+        <button onClick={() => alert(`Hello ${firstname} ${lastname}!`)}>Submit</button>
+
     </div>
   );
 }
