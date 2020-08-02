@@ -14,15 +14,19 @@ function Todotable(props) {
     {
       Header: 'Description',
       accessor: 'desc'
+    },
+    {
+      Header: 'Action',
+      Cell: ({row}) => <button onClick={() => deleteTodo(row._index)}>Delete</button>
     }
   ];
   
-
   return (
     <div>
       <ReactTable data={todos}
         columns={columns} sortable={true}
-        defaultPageSize={10} />
+        defaultPageSize={10}
+        />
     </div>
   )
 }
