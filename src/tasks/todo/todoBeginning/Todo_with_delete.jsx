@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import './Todo.css';
+import React, { useState } from 'react';
 
-function Todo() {
+function TodoDelete() {
 
   const [ desc, setDesc ] = useState('');
-  const [ item, setItem ] = useState('');
   const [ todos, setTodos ] = useState([]);
 
   const inputChanged = (e, setter) => {
@@ -17,8 +15,10 @@ function Todo() {
     setTodos([...todos, { desc, date }]);
   }
 
+  const deleteTodo = (i) => setTodos(todos.filter((todo, index) => i !== index));
+
   return (
-    <div className="Todo">
+    <div className="TodoDelete">
       <h1>Simple Todo</h1>
       <form onSubmit={addTodo}>
         <input type='text' value={desc} onChange={e => inputChanged(e, setDesc)}></input>
@@ -30,12 +30,14 @@ function Todo() {
           <tr>
             <th>Date</th>
             <th>Description</th>
+            <th>Action</th>
           </tr>
 
-          {todos.map((todo, index) => (
-            <tr key={index}>
+          {todos.map((todo, i) => (
+            <tr key={i}>
               <td>{todo.date}</td>
               <td>{todo.desc}</td>
+              <td><button onClick={() => deleteTodo(i)}>Delete</button></td>
             </tr>))}
 
         </tbody>
@@ -44,4 +46,4 @@ function Todo() {
   );
 }
 
-export default Todo;
+export default TodoDelete;

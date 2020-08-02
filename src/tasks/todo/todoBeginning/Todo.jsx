@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import './Todo.css';
 
-function TodoDelete() {
+function Todo() {
 
   const [ desc, setDesc ] = useState('');
   const [ todos, setTodos ] = useState([]);
@@ -19,7 +18,7 @@ function TodoDelete() {
   const deleteTodo = (i) => setTodos(todos.filter((todo, index) => i !== index));
 
   return (
-    <div className="TodoDelete">
+    <div className="Todo">
       <h1>Simple Todo</h1>
       <form onSubmit={addTodo}>
         <input type='text' value={desc} onChange={e => inputChanged(e, setDesc)}></input>
@@ -47,4 +46,4 @@ function TodoDelete() {
   );
 }
 
-export default TodoDelete;
+export default Todo;

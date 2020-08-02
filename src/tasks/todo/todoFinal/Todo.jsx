@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
-import Todotable from './tasks/todo/todoFinal/Todotable';
-import Todolist from './tasks/todo/todoFinal/Todolist';
+import './Todo.css';
+import Todotable from './Todotable';
+import Todolist from './Todolist';
 
-function App() {
+function Todo() {
 
   const [ desc, setDesc ] = useState('');
   const [ todos, setTodos ] = useState([]);
@@ -32,4 +32,4 @@ function App() {
   );
 }
 
-export default App;
+export default Todo;
