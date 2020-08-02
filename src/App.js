@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import Navigator from './Navigator';
+import Home from './Home';
+import Contact from './Contact';
+import About from './About';
 import './App.css';
-import Todotable from './tasks/todo/todoFinal/Todotable_React-tables';
-import Todolist from './tasks/todo/todoFinal/Todolist';
 
 function App() {
 
-  const [ desc, setDesc ] = useState('');
-  const [ todos, setTodos ] = useState([]);
-
-  const inputChanged = (e, setter) => {
-    setter(e.target.value);
-  }
-  
-  const addTodo = e => {
-    e.preventDefault();
-    const date = new Date().toDateString()
-    setTodos([...todos, { desc, date }]);
-  }
-
-  const deleteTodo = (i) => setTodos(todos.filter((todo, index) => i !== index));
-
   return (
     <div className="App">
-      <h1>Simple Todo</h1>
-
-      <Todolist desc={desc} setDesc={setDesc} addTodo={addTodo} inputChanged={inputChanged}/>
-
-      <Todotable todos={todos} deleteTodo={deleteTodo}/>
-
+      <h1>Welcome to React Navigation</h1>
+      <BrowserRouter>
+        <div>
+          <Navigator />
+            {/* <Link to={'/'}>Home</Link>{' '}
+            <Link to={'/contact'}>Contact</Link>{' '}
+            <Link to={'/about'}>About</Link>{' '} */}
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route path='/contact' component={Contact}/>
+            <Route path='/about' component={About}/>
+            <Route render={() => <h1>Sorry! Page not found.</h1>}/>
+          </Switch>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
