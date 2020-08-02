@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import './Todo.css';
 
-function App() {
+function Todo() {
 
   const [ desc, setDesc ] = useState('');
+  const [ item, setItem ] = useState('');
   const [ todos, setTodos ] = useState([]);
 
   const inputChanged = (e, setter) => {
@@ -16,10 +17,8 @@ function App() {
     setTodos([...todos, { desc, date }]);
   }
 
-  const deleteTodo = (i) => setTodos(todos.filter((todo, index) => i !== index));
-
   return (
-    <div className="App">
+    <div className="Todo">
       <h1>Simple Todo</h1>
       <form onSubmit={addTodo}>
         <input type='text' value={desc} onChange={e => inputChanged(e, setDesc)}></input>
@@ -31,14 +30,12 @@ function App() {
           <tr>
             <th>Date</th>
             <th>Description</th>
-            <th>Action</th>
           </tr>
 
-          {todos.map((todo, i) => (
-            <tr key={i}>
+          {todos.map((todo, index) => (
+            <tr key={index}>
               <td>{todo.date}</td>
               <td>{todo.desc}</td>
-              <td><button onClick={() => deleteTodo(i)}>Delete</button></td>
             </tr>))}
 
         </tbody>
@@ -47,4 +44,4 @@ function App() {
   );
 }
 
-export default App;
+export default Todo;

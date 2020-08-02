@@ -1,1 +1,22 @@
+body {
+  margin: 0;
+  width: 100%;
+}
 
+h1 {
+  background-color: black;
+  color: white;
+}
+
+.App {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+table {
+  margin: auto;
+  padding: 10px;
+}
